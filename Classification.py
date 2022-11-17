@@ -1,6 +1,8 @@
 # Classification Model
 ## Date: 11/20/2022
 
-class Model(object):
+import tensorflow as tf
+
+class Claasification(object):
     def __init__(self):
-        pass
+        pass 
