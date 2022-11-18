@@ -4,16 +4,25 @@
 
 import SteelDataset as sd
 import os
-import random
-import string
-import copy
+
+import matplotlib.pyplot as plt
+import numpy as np
+import PIL
+import tensorflow as tf
+
+from tensorflow import keras
+from keras import layers
+from keras.models import Sequential
 
 class Classification(object):
     def __init__(self, train_num, num_segmented, fold) :
         self.data =  sd.STEELDataAcquisition('TRAIN', train_num, num_segmented)
         self.result_path = ['./result', self.generate_result_name()]
-        self.validation = None
-        self.train_results = self.train_model()
+        ##
+        # Appears to be testing model on testing data
+        self.validation = self.data =  sd.STEELDataAcquisition('TEST', train_num, num_segmented)
+        ##
+        self.model = self.train_model()
         self.saved_model = self.save_model()
         self.eval_model = self.eval()
     
@@ -31,12 +40,9 @@ class Classification(object):
         name = f'{baseName}_{postfix}'
         print('\n', '-'*50, '\n', 'Model Name:\n\t' ,name, '\n', '-'*50, '\n')
         return name
-
-    def set_results_path(self):
-        return self.result_name()
     
     def train_model(self):
-        pass
+        PIL.Image.open(str(self.data['pos'][1]))
 
     def save_train_results(self):
         pass
